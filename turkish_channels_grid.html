@@ -1,2006 +1,0 @@
-
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <title>القنوات التركية IPTV</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #d10000;
-      margin-bottom: 20px;
-    }
-    #search {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    #channels {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-    }
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card img {
-      max-width: 100%;
-      max-height: 80px;
-      margin-bottom: 10px;
-    }
-    .card-name {
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-    .card button {
-      margin: 3px 0;
-      padding: 6px;
-      font-size: 13px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: white;
-    }
-    .play-btn {
-      background-color: #007bff;
-    }
-    .fav-btn {
-      background-color: #28a745;
-    }
-    .remove-btn {
-      background-color: #dc3545;
-    }
-    video {
-      width: 100%;
-      max-height: 300px;
-      margin: 20px 0;
-      background: black;
-    }
-    #favoritesTitle {
-      margin-top: 40px;
-      color: #28a745;
-    }
-    #favorites {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-    }
-  </style>
-</head>
-<body>
-  <h1>📺 القنوات التركية (IPTV)</h1>
-  <input type="text" id="search" placeholder="🔍 ابحث عن قناة...">
-  <video id="player" controls autoplay muted></video>
-  <div id="channels">
-
-    <div class="card" data-name="24 TV">
-      <img src="https://i.imgur.com/8FO41es.png" alt="logo">
-      <div class="card-name">24 TV</div>
-      <button class="play-btn" onclick="playChannel('https://kanal24.blutv.com/blutv_kanal24_live/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('24 TV', 'https://i.imgur.com/8FO41es.png', 'https://kanal24.blutv.com/blutv_kanal24_live/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="360 (1080p)">
-      <img src="https://i.imgur.com/agn47sQ.png" alt="logo">
-      <div class="card-name">360 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05a')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('360 (1080p)', 'https://i.imgur.com/agn47sQ.png', 'http://185.234.111.229:8000/play/a05a')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="A2TV">
-      <img src="https://iatv.tmgrup.com.tr/site/v2/a2tv/i/a2tv-logo.png" alt="logo">
-      <div class="card-name">A2TV</div>
-      <button class="play-btn" onclick="playChannel('https://c.fulltvizle.com/a2/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('A2TV', 'https://iatv.tmgrup.com.tr/site/v2/a2tv/i/a2tv-logo.png', 'https://c.fulltvizle.com/a2/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="A Haber">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Ahaber_Logo.png" alt="logo">
-      <div class="card-name">A Haber</div>
-      <button class="play-btn" onclick="playChannel('https://c.fulltvizle.com/ahaber/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('A Haber', 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Ahaber_Logo.png', 'https://c.fulltvizle.com/ahaber/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="A Para (1080p)">
-      <img src="https://i.imgur.com/GjHnq0c.png" alt="logo">
-      <div class="card-name">A Para (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01l')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('A Para (1080p)', 'https://i.imgur.com/GjHnq0c.png', 'http://185.234.111.229:8000/play/a01l')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="A Spor">
-      <img src="https://i.imgur.com/ZhkZzLf.png" alt="logo">
-      <div class="card-name">A Spor</div>
-      <button class="play-btn" onclick="playChannel('https://trkvz-live.daioncdn.net/aspor/aspor.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('A Spor', 'https://i.imgur.com/ZhkZzLf.png', 'https://trkvz-live.daioncdn.net/aspor/aspor.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="A Türk Izmir (360p)">
-      <img src="https://i.imgur.com/je5wQ3G.png" alt="logo">
-      <div class="card-name">A Türk Izmir (360p)</div>
-      <button class="play-btn" onclick="playChannel('https://vdo.digitalbox.xyz:3807/stream/play.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('A Türk Izmir (360p)', 'https://i.imgur.com/je5wQ3G.png', 'https://vdo.digitalbox.xyz:3807/stream/play.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="AA Live (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/dWElJll.png" alt="logo">
-      <div class="card-name">AA Live (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://mtulqxgomrllive.mediatriple.net/mtulqxgomrllive/broadcast_59f9c0c785b88.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('AA Live (720p) [Not 24/7]', 'https://i.imgur.com/dWElJll.png', 'https://mtulqxgomrllive.mediatriple.net/mtulqxgomrllive/broadcast_59f9c0c785b88.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ADA TV (576p)">
-      <img src="https://i.imgur.com/YWmkUWU.png" alt="logo">
-      <div class="card-name">ADA TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/adatv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ADA TV (576p)', 'https://i.imgur.com/YWmkUWU.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/adatv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Afyon Türk TV (720p)">
-      <img src="https://i.ibb.co/tXbD8Sz/8A1HOMZ.png" alt="logo">
-      <div class="card-name">Afyon Türk TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv.digitalbox.xyz:19360/afyonturktv/afyonturktv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Afyon Türk TV (720p)', 'https://i.ibb.co/tXbD8Sz/8A1HOMZ.png', 'https://tv.digitalbox.xyz:19360/afyonturktv/afyonturktv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Agro TV (1080p)">
-      <img src="https://i.imgur.com/ls9NLa4.png" alt="logo">
-      <div class="card-name">Agro TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a011')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Agro TV (1080p)', 'https://i.imgur.com/ls9NLa4.png', 'http://185.234.111.229:8000/play/a011')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ahi TV Kirsehir (576p)">
-      <img src="https://i.imgur.com/5LIIZct.png" alt="logo">
-      <div class="card-name">Ahi TV Kirsehir (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://yayin3.canlitv.com:1935/canlitv/ahitv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ahi TV Kirsehir (576p)', 'https://i.imgur.com/5LIIZct.png', 'http://yayin3.canlitv.com:1935/canlitv/ahitv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Akit TV (1080p)">
-      <img src="https://i.imgur.com/oGto929.png" alt="logo">
-      <div class="card-name">Akit TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05m')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Akit TV (1080p)', 'https://i.imgur.com/oGto929.png', 'http://185.234.111.229:8000/play/a05m')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Aksu TV (720p)">
-      <img src="https://i.imgur.com/mgDCKiy.png" alt="logo">
-      <div class="card-name">Aksu TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_aksutv/aksutv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Aksu TV (720p)', 'https://i.imgur.com/mgDCKiy.png', 'https://live.artidijitalmedya.com/artidijital_aksutv/aksutv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Al-Zahra TV Turkic (720p)">
-      <img src="https://i.imgur.com/QEHKGnG.png" alt="logo">
-      <div class="card-name">Al-Zahra TV Turkic (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00t')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Al-Zahra TV Turkic (720p)', 'https://i.imgur.com/QEHKGnG.png', 'http://185.234.111.229:8000/play/a00t')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Alanya Posta TV (1080p)">
-      <img src="https://i.imgur.com/a3w9eFe.png" alt="logo">
-      <div class="card-name">Alanya Posta TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://api-tv3.yayin.com.tr/postatv/postatv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Alanya Posta TV (1080p)', 'https://i.imgur.com/a3w9eFe.png', 'https://api-tv3.yayin.com.tr/postatv/postatv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Altas TV (1080p)">
-      <img src="https://i.imgur.com/XaJ7fp6.png" alt="logo">
-      <div class="card-name">Altas TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/altastv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Altas TV (1080p)', 'https://i.imgur.com/XaJ7fp6.png', 'https://edge1.socialsmart.tv/altastv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Anadolu Dernek TV (576p)">
-      <img src="https://i.imgur.com/taaRzdO.png" alt="logo">
-      <div class="card-name">Anadolu Dernek TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a020')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Anadolu Dernek TV (576p)', 'https://i.imgur.com/taaRzdO.png', 'http://185.234.111.229:8000/play/a020')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Anadolu Net TV (1080p)">
-      <img src="https://www.anadolunettv.com/d/r/logo.png" alt="logo">
-      <div class="card-name">Anadolu Net TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_anadolunet/anadolunet/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Anadolu Net TV (1080p)', 'https://www.anadolunettv.com/d/r/logo.png', 'https://live.artidijitalmedya.com/artidijital_anadolunet/anadolunet/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ARAS TV (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/JsDCyWG.png" alt="logo">
-      <div class="card-name">ARAS TV (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://1.rtmp.org/tv217/yayin.stream/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ARAS TV (576p) [Not 24/7]', 'https://i.imgur.com/JsDCyWG.png', 'http://1.rtmp.org/tv217/yayin.stream/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ATV">
-      <img src="https://i.imgur.com/HyVUwFC.png" alt="logo">
-      <div class="card-name">ATV</div>
-      <button class="play-btn" onclick="playChannel('http://116.202.238.88/ATV_TR/tracks-v1a1/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ATV', 'https://i.imgur.com/HyVUwFC.png', 'http://116.202.238.88/ATV_TR/tracks-v1a1/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ATV Alanya (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/bUwarR0.png" alt="logo">
-      <div class="card-name">ATV Alanya (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream2.taksimbilisim.com:1935/alanyatv/alanyatv.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ATV Alanya (720p) [Not 24/7]', 'https://i.imgur.com/bUwarR0.png', 'http://stream2.taksimbilisim.com:1935/alanyatv/alanyatv.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ATV Avrupa (576p)">
-      <img src="https://i.tmgrup.com.tr/aav/site/v1/i/atv-avrupa-logo.png" alt="logo">
-      <div class="card-name">ATV Avrupa (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a018')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ATV Avrupa (576p)', 'https://i.tmgrup.com.tr/aav/site/v1/i/atv-avrupa-logo.png', 'http://185.234.111.229:8000/play/a018')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Azerbaijan Gharbi">
-      <img src="https://upload.wikimedia.org/wikipedia/fa/thumb/2/21/Urmia_TV.svg/250px-Urmia_TV.svg.png" alt="logo">
-      <div class="card-name">Azerbaijan Gharbi</div>
-      <button class="play-btn" onclick="playChannel('https://lenz.splus.ir/PLTV/88888888/224/3221226800/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Azerbaijan Gharbi', 'https://upload.wikimedia.org/wikipedia/fa/thumb/2/21/Urmia_TV.svg/250px-Urmia_TV.svg.png', 'https://lenz.splus.ir/PLTV/88888888/224/3221226800/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BabyFirst">
-      <img src="https://i.imgur.com/WxLHBwu.png" alt="logo">
-      <div class="card-name">BabyFirst</div>
-      <button class="play-btn" onclick="playChannel('https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/c8d16110-566c-4e95-a1df-55d175e9e201/manifest.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BabyFirst', 'https://i.imgur.com/WxLHBwu.png', 'https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/c8d16110-566c-4e95-a1df-55d175e9e201/manifest.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BabyTV Turkey (1080p) [Geo-blocked]">
-      <img src="https://i.imgur.com/4BDJ5FT.png" alt="logo">
-      <div class="card-name">BabyTV Turkey (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://saran-live.ercdn.net/babytv/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BabyTV Turkey (1080p) [Geo-blocked]', 'https://i.imgur.com/4BDJ5FT.png', 'https://saran-live.ercdn.net/babytv/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="beIN Sports Haber">
-      <img src="https://i.imgur.com/QWo0x7S.jpg" alt="logo">
-      <div class="card-name">beIN Sports Haber</div>
-      <button class="play-btn" onclick="playChannel('https://canlitvulusal3.xyz/live/beinsportshaber/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('beIN Sports Haber', 'https://i.imgur.com/QWo0x7S.jpg', 'https://canlitvulusal3.xyz/live/beinsportshaber/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Benguturk TV (1080p)">
-      <img src="https://i.imgur.com/p3ON1oX.png" alt="logo">
-      <div class="card-name">Benguturk TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05u')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Benguturk TV (1080p)', 'https://i.imgur.com/p3ON1oX.png', 'http://185.234.111.229:8000/play/a05u')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Berat TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/BxxH8wE.png" alt="logo">
-      <div class="card-name">Berat TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-berattv.yayin.com.tr/berattv/berattv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Berat TV (720p) [Not 24/7]', 'https://i.imgur.com/BxxH8wE.png', 'https://cdn-berattv.yayin.com.tr/berattv/berattv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Beşiktaş Web TV (360p)">
-      <img src="https://i.ibb.co/bRhnM6W/qti5aea.png" alt="logo">
-      <div class="card-name">Beşiktaş Web TV (360p)</div>
-      <button class="play-btn" onclick="playChannel('https://s01.vpis.io/besiktas/besiktas.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Beşiktaş Web TV (360p)', 'https://i.ibb.co/bRhnM6W/qti5aea.png', 'https://s01.vpis.io/besiktas/besiktas.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Beyaz TV (1080p)">
-      <img src="https://i.imgur.com/uykIdML.png" alt="logo">
-      <div class="card-name">Beyaz TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05h')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Beyaz TV (1080p)', 'https://i.imgur.com/uykIdML.png', 'http://185.234.111.229:8000/play/a05h')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Beykent TV (720p)">
-      <img src="https://i.imgur.com/Zv65ns5.png" alt="logo">
-      <div class="card-name">Beykent TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://yayin30.haber100.com/live/beykenttv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Beykent TV (720p)', 'https://i.imgur.com/Zv65ns5.png', 'https://yayin30.haber100.com/live/beykenttv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Bir TV (720p)">
-      <img src="https://birtv.tv/assets/upload/637f83951df60.png" alt="logo">
-      <div class="card-name">Bir TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_birtv/birtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Bir TV (720p)', 'https://birtv.tv/assets/upload/637f83951df60.png', 'https://live.artidijitalmedya.com/artidijital_birtv/birtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Bizimev TV (720p)">
-      <img src="https://i.imgur.com/eJa6sFY.png" alt="logo">
-      <div class="card-name">Bizimev TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/blutv_bizimev/bizimev_sd.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Bizimev TV (720p)', 'https://i.imgur.com/eJa6sFY.png', 'https://mn-nl.mncdn.com/blutv_bizimev/bizimev_sd.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Bloomberg HT">
-      <img src="https://i.imgur.com/bmkXfIE.png" alt="logo">
-      <div class="card-name">Bloomberg HT</div>
-      <button class="play-btn" onclick="playChannel('https://bloomberght2dvr.blutv.com/blutv_bloomberght_dvr/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Bloomberg HT', 'https://i.imgur.com/bmkXfIE.png', 'https://bloomberght2dvr.blutv.com/blutv_bloomberght_dvr/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BRT 1 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/gOPAi2c.png" alt="logo">
-      <div class="card-name">BRT 1 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/brt1hd/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BRT 1 (720p) [Not 24/7]', 'https://i.imgur.com/gOPAi2c.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/brt1hd/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BRT 2 (720p)">
-      <img src="https://i.imgur.com/t5kbIuj.png" alt="logo">
-      <div class="card-name">BRT 2 (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://bozztv.com/gin-36bay3/gt-kibrisbrt3/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BRT 2 (720p)', 'https://i.imgur.com/t5kbIuj.png', 'http://bozztv.com/gin-36bay3/gt-kibrisbrt3/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BRT 3">
-      <img src="https://i.imgur.com/uczNZ3E.png" alt="logo">
-      <div class="card-name">BRT 3</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a07e')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BRT 3', 'https://i.imgur.com/uczNZ3E.png', 'http://185.234.111.229:8000/play/a07e')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="BRTV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/U3qlEAp.png" alt="logo">
-      <div class="card-name">BRTV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_brtv/brtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('BRTV (720p) [Geo-blocked]', 'https://i.imgur.com/U3qlEAp.png', 'https://live.artidijitalmedya.com/artidijital_brtv/brtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Bursa AS TV (900p)">
-      <img src="https://i.imgur.com/MCUjck8.png" alt="logo">
-      <div class="card-name">Bursa AS TV (900p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_astv/astv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Bursa AS TV (900p)', 'https://i.imgur.com/MCUjck8.png', 'https://live.artidijitalmedya.com/artidijital_astv/astv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Bursa TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/9cl1MR8.png" alt="logo">
-      <div class="card-name">Bursa TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-bursatv.yayin.com.tr/bursatv/bursatv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Bursa TV (720p) [Not 24/7]', 'https://i.imgur.com/9cl1MR8.png', 'https://cdn-bursatv.yayin.com.tr/bursatv/bursatv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Can TV (720p)">
-      <img src="https://i.imgur.com/oIMtuwB.png" alt="logo">
-      <div class="card-name">Can TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://canbroadcast.com:7000/canlican/tv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Can TV (720p)', 'https://i.imgur.com/oIMtuwB.png', 'http://canbroadcast.com:7000/canlican/tv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Cay TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/ndupxwu.png" alt="logo">
-      <div class="card-name">Cay TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream2.taksimbilisim.com:1935/caytv/bant1/CAYTV.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Cay TV (720p) [Not 24/7]', 'https://i.imgur.com/ndupxwu.png', 'http://stream2.taksimbilisim.com:1935/caytv/bant1/CAYTV.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Cekmeköy TV (1080p)">
-      <img src="https://i.imgur.com/sjAGFWu.png" alt="logo">
-      <div class="card-name">Cekmeköy TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-cekmekoybeltv.yayin.com.tr/cekmekoybeltv/cekmekoybeltv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Cekmeköy TV (1080p)', 'https://i.imgur.com/sjAGFWu.png', 'https://cdn-cekmekoybeltv.yayin.com.tr/cekmekoybeltv/cekmekoybeltv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="CGTN Documentary">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/CGTN_Documentary_logo.png/400px-CGTN_Documentary_logo.png" alt="logo">
-      <div class="card-name">CGTN Documentary</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/dogusdyg_drone/cgtn/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('CGTN Documentary', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/CGTN_Documentary_logo.png/400px-CGTN_Documentary_logo.png', 'https://mn-nl.mncdn.com/dogusdyg_drone/cgtn/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ciftci TV (576p)">
-      <img src="https://i.imgur.com/CLzP4vL.png" alt="logo">
-      <div class="card-name">Ciftci TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a04i')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ciftci TV (576p)', 'https://i.imgur.com/CLzP4vL.png', 'http://185.234.111.229:8000/play/a04i')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Cine 1 (720p)">
-      <img src="https://www.lyngsat.com/logo/tv/cc/cine-1-tr.png" alt="logo">
-      <div class="card-name">Cine 1 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Cine 1 (720p)', 'https://www.lyngsat.com/logo/tv/cc/cine-1-tr.png', 'https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Cine5 (720p)">
-      <img src="https://i.imgur.com/AmcOAIY.png" alt="logo">
-      <div class="card-name">Cine5 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-cine5tv.yayin.com.tr/cine5tv/cine5tv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Cine5 (720p)', 'https://i.imgur.com/AmcOAIY.png', 'https://cdn-cine5tv.yayin.com.tr/cine5tv/cine5tv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="CNBC-e">
-      <img src="https://www.digiturkburada.com.tr/kanal3/kanal-buyuk/cnbc-e-buyuk.png?rkt=DfS6Tgv6Hjr93k3" alt="logo">
-      <div class="card-name">CNBC-e</div>
-      <button class="play-btn" onclick="playChannel('https://stream.tvcdn.net/ekonomi/cnbc-e.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('CNBC-e', 'https://www.digiturkburada.com.tr/kanal3/kanal-buyuk/cnbc-e-buyuk.png?rkt=DfS6Tgv6Hjr93k3', 'https://stream.tvcdn.net/ekonomi/cnbc-e.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Deha TV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/Dlsm9XP.png" alt="logo">
-      <div class="card-name">Deha TV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_dehatv/dehatv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Deha TV (720p) [Geo-blocked]', 'https://i.imgur.com/Dlsm9XP.png', 'https://live.artidijitalmedya.com/artidijital_dehatv/dehatv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Deniz Postası TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/Mm8hdfx.png" alt="logo">
-      <div class="card-name">Deniz Postası TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_denizpostasi/denizpostasi/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Deniz Postası TV (720p) [Not 24/7]', 'https://i.imgur.com/Mm8hdfx.png', 'https://live.artidijitalmedya.com/artidijital_denizpostasi/denizpostasi/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Dersim62 TV (720p)">
-      <img src="https://i.imgur.com/wFTl8aQ.png" alt="logo">
-      <div class="card-name">Dersim62 TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://live.arkumedia.com:1935/dersim62tv/dersim62tv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Dersim62 TV (720p)', 'https://i.imgur.com/wFTl8aQ.png', 'http://live.arkumedia.com:1935/dersim62tv/dersim62tv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="DHA (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/VZhag2x.png" alt="logo">
-      <div class="card-name">DHA (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://603c568fccdf5.streamlock.net/live/dhaweb1_C5efC/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('DHA (720p) [Not 24/7]', 'https://i.imgur.com/VZhag2x.png', 'https://603c568fccdf5.streamlock.net/live/dhaweb1_C5efC/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="DİM TV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/X4QFDhk.png" alt="logo">
-      <div class="card-name">DİM TV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_dimtv/dimtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('DİM TV (720p) [Geo-blocked]', 'https://i.imgur.com/X4QFDhk.png', 'https://live.artidijitalmedya.com/artidijital_dimtv/dimtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Disney Jr. (1080p) [Geo-blocked]">
-      <img src="https://www.dsmart.com.tr/api/v1/public/images/kanallar/disneyjr.png" alt="logo">
-      <div class="card-name">Disney Jr. (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://saran-live.ercdn.net/disneyjunior/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Disney Jr. (1080p) [Geo-blocked]', 'https://www.dsmart.com.tr/api/v1/public/images/kanallar/disneyjr.png', 'https://saran-live.ercdn.net/disneyjunior/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Diyanet TV (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Diyanet_TV_logo.svg/512px-Diyanet_TV_logo.svg.png" alt="logo">
-      <div class="card-name">Diyanet TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05j')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Diyanet TV (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Diyanet_TV_logo.svg/512px-Diyanet_TV_logo.svg.png', 'http://185.234.111.229:8000/play/a05j')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Diyar TV (720p)">
-      <img src="https://i.imgur.com/qWkHjRA.png" alt="logo">
-      <div class="card-name">Diyar TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a051')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Diyar TV (720p)', 'https://i.imgur.com/qWkHjRA.png', 'http://185.234.111.229:8000/play/a051')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Dost TV (576p)">
-      <img src="https://upload.wikimedia.org/wikipedia/en/f/f6/Dost_TV.jpg" alt="logo">
-      <div class="card-name">Dost TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('https://dost.stream.emsal.im/tv/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Dost TV (576p)', 'https://upload.wikimedia.org/wikipedia/en/f/f6/Dost_TV.jpg', 'https://dost.stream.emsal.im/tv/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Dream Turk (576p)">
-      <img src="https://i.imgur.com/vJ8VaZi.png" alt="logo">
-      <div class="card-name">Dream Turk (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01v')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Dream Turk (576p)', 'https://i.imgur.com/vJ8VaZi.png', 'http://185.234.111.229:8000/play/a01v')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="DRT Denizli (720p)">
-      <img src="https://i.imgur.com/ZLX2RB7.png" alt="logo">
-      <div class="card-name">DRT Denizli (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/drttv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('DRT Denizli (720p)', 'https://i.imgur.com/ZLX2RB7.png', 'https://edge1.socialsmart.tv/drttv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="DRT TV (576p)">
-      <img src="https://i.imgur.com/IVh3YST.png" alt="logo">
-      <div class="card-name">DRT TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a06a')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('DRT TV (576p)', 'https://i.imgur.com/IVh3YST.png', 'http://185.234.111.229:8000/play/a06a')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Edessa TV (720p)">
-      <img src="https://i.imgur.com/rhU6j9I.png" alt="logo">
-      <div class="card-name">Edessa TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv.digitalbox.xyz:19360/edessatv/edessatv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Edessa TV (720p)', 'https://i.imgur.com/rhU6j9I.png', 'https://tv.digitalbox.xyz:19360/edessatv/edessatv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ekin Turk (576p)">
-      <img src="https://i.imgur.com/LnNcvqE.png" alt="logo">
-      <div class="card-name">Ekin Turk (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a025')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ekin Turk (576p)', 'https://i.imgur.com/LnNcvqE.png', 'http://185.234.111.229:8000/play/a025')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ekoturk">
-      <img src="https://www.dsmart.com.tr/epg/images/0x60/5ffc18c6cfef0b15933a8b65" alt="logo">
-      <div class="card-name">Ekoturk</div>
-      <button class="play-btn" onclick="playChannel('https://ekoturk.blutv.com/blutv_ekoturk2/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ekoturk', 'https://www.dsmart.com.tr/epg/images/0x60/5ffc18c6cfef0b15933a8b65', 'https://ekoturk.blutv.com/blutv_ekoturk2/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Elmas TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/czuCrzW.png" alt="logo">
-      <div class="card-name">Elmas TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://5be5d840359c6.streamlock.net/elmas67tv/elmas67tv/chunklist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Elmas TV (720p) [Not 24/7]', 'https://i.imgur.com/czuCrzW.png', 'https://5be5d840359c6.streamlock.net/elmas67tv/elmas67tv/chunklist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Er TV (1080p) [Geo-blocked]">
-      <img src="https://i.imgur.com/VDGEPrD.png" alt="logo">
-      <div class="card-name">Er TV (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_ertv_new/ertv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Er TV (1080p) [Geo-blocked]', 'https://i.imgur.com/VDGEPrD.png', 'https://live.artidijitalmedya.com/artidijital_ertv_new/ertv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ert Sah TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/0cdpsdz.png" alt="logo">
-      <div class="card-name">Ert Sah TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://win20.yayin.com.tr/ertsahtv/ertsahtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ert Sah TV (720p) [Not 24/7]', 'https://i.imgur.com/0cdpsdz.png', 'http://win20.yayin.com.tr/ertsahtv/ertsahtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Erzurum Web TV (720p)">
-      <img src="https://i.imgur.com/HF7N4Li.png" alt="logo">
-      <div class="card-name">Erzurum Web TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://win29.yayin.com.tr/erzurumwebtv/erzurumwebtv/iptvdelisi.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Erzurum Web TV (720p)', 'https://i.imgur.com/HF7N4Li.png', 'https://win29.yayin.com.tr/erzurumwebtv/erzurumwebtv/iptvdelisi.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ES TV (720p)">
-      <img src="https://i.imgur.com/epAEBrp.png" alt="logo">
-      <div class="card-name">ES TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_estv/estv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ES TV (720p)', 'https://i.imgur.com/epAEBrp.png', 'https://live.artidijitalmedya.com/artidijital_estv/estv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ETV Kayseri (720p)">
-      <img src="https://yt3.googleusercontent.com/ytc/AIdro_msPtG6zfPKIJIIdvG4dehXLoVoXcHM2-2HL9YxsNYzGQ=s512-c-k-c0x00ffffff-no-rj" alt="logo">
-      <div class="card-name">ETV Kayseri (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_etv/etv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ETV Kayseri (720p)', 'https://yt3.googleusercontent.com/ytc/AIdro_msPtG6zfPKIJIIdvG4dehXLoVoXcHM2-2HL9YxsNYzGQ=s512-c-k-c0x00ffffff-no-rj', 'https://live.artidijitalmedya.com/artidijital_etv/etv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ETV Manisa (1080p) [Not 24/7]">
-      <img src="https://i.ibb.co/QKXtdkz/sOd3INg.png" alt="logo">
-      <div class="card-name">ETV Manisa (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/manisaetv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ETV Manisa (1080p) [Not 24/7]', 'https://i.ibb.co/QKXtdkz/sOd3INg.png', 'https://edge1.socialsmart.tv/manisaetv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Euro D (1080p)">
-      <img src="https://i.imgur.com/x9kHsXo.png" alt="logo">
-      <div class="card-name">Euro D (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01w')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Euro D (1080p)', 'https://i.imgur.com/x9kHsXo.png', 'http://185.234.111.229:8000/play/a01w')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="EuroStar (576p)">
-      <img src="https://i.imgur.com/kb165Ot.png" alt="logo">
-      <div class="card-name">EuroStar (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01h')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('EuroStar (576p)', 'https://i.imgur.com/kb165Ot.png', 'http://185.234.111.229:8000/play/a01h')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="FB TV">
-      <img src="https://i.imgur.com/qBVqtYd.png" alt="logo">
-      <div class="card-name">FB TV</div>
-      <button class="play-btn" onclick="playChannel('https://live20.bozztv.com/trn03/gin-fbtv1/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('FB TV', 'https://i.imgur.com/qBVqtYd.png', 'https://live20.bozztv.com/trn03/gin-fbtv1/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Finans Turk TV (720p)">
-      <img src="https://i.ibb.co/wBwmB1T/iY0osc7.png" alt="logo">
-      <div class="card-name">Finans Turk TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://yayin30.haber100.com/live/finansturk/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Finans Turk TV (720p)', 'https://i.ibb.co/wBwmB1T/iY0osc7.png', 'https://yayin30.haber100.com/live/finansturk/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Finest TV (288p) [Not 24/7]">
-      <img src="https://i.imgur.com/1uoP10V.png" alt="logo">
-      <div class="card-name">Finest TV (288p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://media.finest.tv/hls/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Finest TV (288p) [Not 24/7]', 'https://i.imgur.com/1uoP10V.png', 'https://media.finest.tv/hls/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Flash TV (720p)">
-      <img src="https://i.imgur.com/L0NHKBM.png" alt="logo">
-      <div class="card-name">Flash TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/blutv_flashtv/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Flash TV (720p)', 'https://i.imgur.com/L0NHKBM.png', 'https://mn-nl.mncdn.com/blutv_flashtv/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Fortuna TV">
-      <img src="https://i.imgur.com/ZbUSlOC.png" alt="logo">
-      <div class="card-name">Fortuna TV</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/ftvturk/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Fortuna TV', 'https://i.imgur.com/ZbUSlOC.png', 'https://edge1.socialsmart.tv/ftvturk/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="FX (1080p) [Geo-blocked]">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/FX_International_logo.svg/330px-FX_International_logo.svg.png" alt="logo">
-      <div class="card-name">FX (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://saran-live.ercdn.net/fx/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('FX (1080p) [Geo-blocked]', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/FX_International_logo.svg/330px-FX_International_logo.svg.png', 'https://saran-live.ercdn.net/fx/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Gonca TV (720p)">
-      <img src="https://i.imgur.com/TwqIJwo.png" alt="logo">
-      <div class="card-name">Gonca TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/goncatv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Gonca TV (720p)', 'https://i.imgur.com/TwqIJwo.png', 'https://edge1.socialsmart.tv/goncatv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="GRT (900p)">
-      <img src="https://i.imgur.com/eRR0gkC.png" alt="logo">
-      <div class="card-name">GRT (900p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_grt/grt1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('GRT (900p)', 'https://i.imgur.com/eRR0gkC.png', 'https://live.artidijitalmedya.com/artidijital_grt/grt1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="GSTV [Geo-blocked]">
-      <img src="https://i.imgur.com/fC3KuwT.jpg" alt="logo">
-      <div class="card-name">GSTV [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://owifavo5.rocketcdn.com/gstv/gstv.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('GSTV [Geo-blocked]', 'https://i.imgur.com/fC3KuwT.jpg', 'https://owifavo5.rocketcdn.com/gstv/gstv.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="GÜNEŞ TV (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/XmlXofJ.png" alt="logo">
-      <div class="card-name">GÜNEŞ TV (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/gunestv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('GÜNEŞ TV (576p) [Not 24/7]', 'https://i.imgur.com/XmlXofJ.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/gunestv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Guney TV Tarsus (720p)">
-      <img src="https://i.imgur.com/solQ9nj.png" alt="logo">
-      <div class="card-name">Guney TV Tarsus (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_guneytv/guneytv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Guney TV Tarsus (720p)', 'https://i.imgur.com/solQ9nj.png', 'https://live.artidijitalmedya.com/artidijital_guneytv/guneytv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Guneydogu TV (720p)">
-      <img src="https://i.imgur.com/JT5pp3Y.png" alt="logo">
-      <div class="card-name">Guneydogu TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/gtv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Guneydogu TV (720p)', 'https://i.imgur.com/JT5pp3Y.png', 'https://edge1.socialsmart.tv/gtv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="GZT (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/GZT_logo.svg/320px-GZT_logo.svg.png" alt="logo">
-      <div class="card-name">GZT (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/gzttv/gzttv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('GZT (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/GZT_logo.svg/320px-GZT_logo.svg.png', 'https://mn-nl.mncdn.com/gzttv/gzttv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Haber61 TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/2a2XUKl.png" alt="logo">
-      <div class="card-name">Haber61 TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-haber61tv.yayin.com.tr/haber61tv/smil:haber61tv.smil/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Haber61 TV (720p) [Not 24/7]', 'https://i.imgur.com/2a2XUKl.png', 'https://cdn-haber61tv.yayin.com.tr/haber61tv/smil:haber61tv.smil/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Haber Global">
-      <img src="https://i.imgur.com/fu6XeGS.png" alt="logo">
-      <div class="card-name">Haber Global</div>
-      <button class="play-btn" onclick="playChannel('https://haberglobaldvr.blutv.com/blutv_haberglobal_dvr/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Haber Global', 'https://i.imgur.com/fu6XeGS.png', 'https://haberglobaldvr.blutv.com/blutv_haberglobal_dvr/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Habertürk TV (1080p)">
-      <img src="https://i.imgur.com/6Tw3rUp.png" alt="logo">
-      <div class="card-name">Habertürk TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://ciner-live.daioncdn.net/haberturktv/haberturktv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Habertürk TV (1080p)', 'https://i.imgur.com/6Tw3rUp.png', 'https://ciner-live.daioncdn.net/haberturktv/haberturktv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Halk TV (1080p)">
-      <img src="https://i.imgur.com/xM0HA30.png" alt="logo">
-      <div class="card-name">Halk TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://halktv-live.daioncdn.net/halktv/halktv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Halk TV (1080p)', 'https://i.imgur.com/xM0HA30.png', 'https://halktv-live.daioncdn.net/halktv/halktv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="HTSpor TV (1080p)">
-      <img src="https://www.htspor.com/images/manifest/social-share-logo.png" alt="logo">
-      <div class="card-name">HTSpor TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a016')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('HTSpor TV (1080p)', 'https://www.htspor.com/images/manifest/social-share-logo.png', 'http://185.234.111.229:8000/play/a016')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Hunat TV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/NrxHGnb.png" alt="logo">
-      <div class="card-name">Hunat TV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_hunattv/hunattv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Hunat TV (720p) [Geo-blocked]', 'https://i.imgur.com/NrxHGnb.png', 'https://live.artidijitalmedya.com/artidijital_hunattv/hunattv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="IBB TV (1080p)">
-      <img src="https://i.imgur.com/aXxAz84.png" alt="logo">
-      <div class="card-name">IBB TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://wowza.istweb.tv:1935/webtv/webtv_wowza1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('IBB TV (1080p)', 'https://i.imgur.com/aXxAz84.png', 'http://wowza.istweb.tv:1935/webtv/webtv_wowza1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Icel TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/CGwImKv.png" alt="logo">
-      <div class="card-name">Icel TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream.taksimbilisim.com:1935/iceltv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Icel TV (720p) [Not 24/7]', 'https://i.imgur.com/CGwImKv.png', 'http://stream.taksimbilisim.com:1935/iceltv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kablo Info (1080p)">
-      <img src="https://i.imgur.com/6BC3M4C.png" alt="logo">
-      <div class="card-name">Kablo Info (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01g')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kablo Info (1080p)', 'https://i.imgur.com/6BC3M4C.png', 'http://185.234.111.229:8000/play/a01g')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 3 (1080p)">
-      <img src="https://i.imgur.com/eXErSv0.png" alt="logo">
-      <div class="card-name">Kanal 3 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a013')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 3 (1080p)', 'https://i.imgur.com/eXErSv0.png', 'http://185.234.111.229:8000/play/a013')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 7 (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/0gq9xOm.png" alt="logo">
-      <div class="card-name">Kanal 7 (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 7 (1080p) [Not 24/7]', 'https://i.imgur.com/0gq9xOm.png', 'https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 7 Avrupa (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/wlfyj5l.png" alt="logo">
-      <div class="card-name">Kanal 7 Avrupa (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.radyotvonline.net/kanal7live/kanal7avr/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 7 Avrupa (720p) [Not 24/7]', 'https://i.imgur.com/wlfyj5l.png', 'https://livetv.radyotvonline.net/kanal7live/kanal7avr/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 12 (720p)">
-      <img src="https://i.imgur.com/51xCkXG.png" alt="logo">
-      <div class="card-name">Kanal 12 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanal12/kanal12/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 12 (720p)', 'https://i.imgur.com/51xCkXG.png', 'https://live.artidijitalmedya.com/artidijital_kanal12/kanal12/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 15 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/wb1Cdc9.png" alt="logo">
-      <div class="card-name">Kanal 15 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanal15/kanal15/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 15 (720p) [Not 24/7]', 'https://i.imgur.com/wb1Cdc9.png', 'https://live.artidijitalmedya.com/artidijital_kanal15/kanal15/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 23 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/3br8RCq.png" alt="logo">
-      <div class="card-name">Kanal 23 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanal23/kanal23/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 23 (720p) [Not 24/7]', 'https://i.imgur.com/3br8RCq.png', 'https://live.artidijitalmedya.com/artidijital_kanal23/kanal23/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 26 (1080p)">
-      <img src="https://i.imgur.com/Mr7XPii.png" alt="logo">
-      <div class="card-name">Kanal 26 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a04e')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 26 (1080p)', 'https://i.imgur.com/Mr7XPii.png', 'http://185.234.111.229:8000/play/a04e')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 32 (720p)">
-      <img src="https://www.lyngsat.com/logo/tv/kk/kanal-32-tr.png" alt="logo">
-      <div class="card-name">Kanal 32 (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05r')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 32 (720p)', 'https://www.lyngsat.com/logo/tv/kk/kanal-32-tr.png', 'http://185.234.111.229:8000/play/a05r')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 33 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/5WYaoFZ.png" alt="logo">
-      <div class="card-name">Kanal 33 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream.taksimbilisim.com:1935/kanal33/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 33 (720p) [Not 24/7]', 'https://i.imgur.com/5WYaoFZ.png', 'http://stream.taksimbilisim.com:1935/kanal33/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 34 (720p)">
-      <img src="https://i.imgur.com/SIaI6Sj.png" alt="logo">
-      <div class="card-name">Kanal 34 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://5be5d840359c6.streamlock.net/kanal34tv/kanal34tv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 34 (720p)', 'https://i.imgur.com/SIaI6Sj.png', 'https://5be5d840359c6.streamlock.net/kanal34tv/kanal34tv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 38 (540p) [Not 24/7]">
-      <img src="https://i.imgur.com/WvtZ7Xd.png" alt="logo">
-      <div class="card-name">Kanal 38 (540p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://yayin3.canlitv.com:1935/live/kanal38/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 38 (540p) [Not 24/7]', 'https://i.imgur.com/WvtZ7Xd.png', 'http://yayin3.canlitv.com:1935/live/kanal38/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 58 (576p)">
-      <img src="https://i.imgur.com/Rgc66sv.png" alt="logo">
-      <div class="card-name">Kanal 58 (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a053')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 58 (576p)', 'https://i.imgur.com/Rgc66sv.png', 'http://185.234.111.229:8000/play/a053')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal 68 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/5y7K9SS.png" alt="logo">
-      <div class="card-name">Kanal 68 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanal68/kanal68/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal 68 (720p) [Not 24/7]', 'https://i.imgur.com/5y7K9SS.png', 'https://live.artidijitalmedya.com/artidijital_kanal68/kanal68/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Avrupa (1080p)">
-      <img src="https://i.imgur.com/dJocxUQ.png" alt="logo">
-      <div class="card-name">Kanal Avrupa (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://api-tv27.yayin.com.tr/kanalavrupa/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Avrupa (1080p)', 'https://i.imgur.com/dJocxUQ.png', 'https://api-tv27.yayin.com.tr/kanalavrupa/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Avrupa (1080p)">
-      <img src="https://i.imgur.com/bIGk6RN.png" alt="logo">
-      <div class="card-name">Kanal Avrupa (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://51.15.2.151/hls/kanalavrupa.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Avrupa (1080p)', 'https://i.imgur.com/bIGk6RN.png', 'http://51.15.2.151/hls/kanalavrupa.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal B (576p)">
-      <img src="https://i.imgur.com/bUsbxTQ.png" alt="logo">
-      <div class="card-name">Kanal B (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01b')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal B (576p)', 'https://i.imgur.com/bUsbxTQ.png', 'http://185.234.111.229:8000/play/a01b')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal D (1080p)">
-      <img src="https://i.imgur.com/9o1atM6.png" alt="logo">
-      <div class="card-name">Kanal D (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://demiroren-live.daioncdn.net/kanald/kanald.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal D (1080p)', 'https://i.imgur.com/9o1atM6.png', 'https://demiroren-live.daioncdn.net/kanald/kanald.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Firat (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/3o8Rokp.png" alt="logo">
-      <div class="card-name">Kanal Firat (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanalfirat/kanalfirat/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Firat (720p) [Not 24/7]', 'https://i.imgur.com/3o8Rokp.png', 'https://live.artidijitalmedya.com/artidijital_kanalfirat/kanalfirat/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Hayat (1080p)">
-      <img src="https://i.imgur.com/eikZj19.png" alt="logo">
-      <div class="card-name">Kanal Hayat (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://tbn02a.ltnschedule.com/hls/nx21i.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Hayat (1080p)', 'https://i.imgur.com/eikZj19.png', 'https://tbn02a.ltnschedule.com/hls/nx21i.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal S (720p)">
-      <img src="https://i.imgur.com/DN6gdg2.png" alt="logo">
-      <div class="card-name">Kanal S (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-kanals.yayin.com.tr/kanals/kanals/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal S (720p)', 'https://i.imgur.com/DN6gdg2.png', 'https://cdn-kanals.yayin.com.tr/kanals/kanals/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Sim (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/UHYJURw.png" alt="logo">
-      <div class="card-name">Kanal Sim (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/simtv/bantp1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Sim (576p) [Not 24/7]', 'https://i.imgur.com/UHYJURw.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/simtv/bantp1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Urfa (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/EvgQmoT.png" alt="logo">
-      <div class="card-name">Kanal Urfa (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/kanalurfa/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Urfa (576p) [Not 24/7]', 'https://i.imgur.com/EvgQmoT.png', 'https://edge1.socialsmart.tv/kanalurfa/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal V (720p)">
-      <img src="https://i.imgur.com/7RNjTno.png" alt="logo">
-      <div class="card-name">Kanal V (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a04b')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal V (720p)', 'https://i.imgur.com/7RNjTno.png', 'http://185.234.111.229:8000/play/a04b')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kanal Z (1080p) [Geo-blocked]">
-      <img src="https://i.imgur.com/Kr8960d.png" alt="logo">
-      <div class="card-name">Kanal Z (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanalz/kanalz/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kanal Z (1080p) [Geo-blocked]', 'https://i.imgur.com/Kr8960d.png', 'https://live.artidijitalmedya.com/artidijital_kanalz/kanalz/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kardelen TV (1080p)">
-      <img src="https://i.imgur.com/0RATxcN.png" alt="logo">
-      <div class="card-name">Kardelen TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/kardelentv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kardelen TV (1080p)', 'https://i.imgur.com/0RATxcN.png', 'https://edge1.socialsmart.tv/kardelentv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kay TV (900p) [Geo-blocked]">
-      <img src="https://i.imgur.com/MymuDJ1.png" alt="logo">
-      <div class="card-name">Kay TV (900p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kaytv/kaytv1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kay TV (900p) [Geo-blocked]', 'https://i.imgur.com/MymuDJ1.png', 'https://live.artidijitalmedya.com/artidijital_kaytv/kaytv1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kent Türk TV (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/FQKPjsm.png" alt="logo">
-      <div class="card-name">Kent Türk TV (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kentturktv/kentturktv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kent Türk TV (1080p) [Not 24/7]', 'https://i.imgur.com/FQKPjsm.png', 'https://live.artidijitalmedya.com/artidijital_kentturktv/kentturktv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kibris Genç TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/eBdQn9h.png" alt="logo">
-      <div class="card-name">Kibris Genç TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/kibrisgenctv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kibris Genç TV (720p) [Not 24/7]', 'https://i.imgur.com/eBdQn9h.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/kibrisgenctv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kibris Kanal T (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/4bA4pXT.png" alt="logo">
-      <div class="card-name">Kibris Kanal T (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/kanalt/bantp1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kibris Kanal T (576p) [Not 24/7]', 'https://i.imgur.com/4bA4pXT.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/kanalt/bantp1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kibris TV (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/5MJZPTo.png" alt="logo">
-      <div class="card-name">Kibris TV (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/kibristv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kibris TV (576p) [Not 24/7]', 'https://i.imgur.com/5MJZPTo.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/kibristv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kon TV (720p)">
-      <img src="https://i.imgur.com/ex67TP8.png" alt="logo">
-      <div class="card-name">Kon TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/blutv_kontv2/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kon TV (720p)', 'https://i.imgur.com/ex67TP8.png', 'https://mn-nl.mncdn.com/blutv_kontv2/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Konya Olay TV (720p)">
-      <img src="https://www.konyaolaytv.com/upload/tema/20230307__5154687762.jpg" alt="logo">
-      <div class="card-name">Konya Olay TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_konyaolaytv/konyaolaytv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Konya Olay TV (720p)', 'https://www.konyaolaytv.com/upload/tema/20230307__5154687762.jpg', 'https://live.artidijitalmedya.com/artidijital_konyaolaytv/konyaolaytv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Koy TV (720p)">
-      <img src="https://i.imgur.com/RcjEHAG.png" alt="logo">
-      <div class="card-name">Koy TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a05v')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Koy TV (720p)', 'https://i.imgur.com/RcjEHAG.png', 'http://185.234.111.229:8000/play/a05v')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="KRAL Pop TV (720p)">
-      <img src="https://i.imgur.com/ch365lh.png" alt="logo">
-      <div class="card-name">KRAL Pop TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('KRAL Pop TV (720p)', 'https://i.imgur.com/ch365lh.png', 'https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="KRAL TV (720p)">
-      <img src="https://i.imgur.com/GeEDOPN.png" alt="logo">
-      <div class="card-name">KRAL TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://dogus-live.daioncdn.net/kraltv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('KRAL TV (720p)', 'https://i.imgur.com/GeEDOPN.png', 'https://dogus-live.daioncdn.net/kraltv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="KRT (1080p)">
-      <img src="https://i.imgur.com/9ZKqdQJ.png" alt="logo">
-      <div class="card-name">KRT (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a06f')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('KRT (1080p)', 'https://i.imgur.com/9ZKqdQJ.png', 'http://185.234.111.229:8000/play/a06f')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kudus TV (576p)">
-      <img src="https://i.imgur.com/lwRA84B.png" alt="logo">
-      <div class="card-name">Kudus TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a065')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kudus TV (576p)', 'https://i.imgur.com/lwRA84B.png', 'http://185.234.111.229:8000/play/a065')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Kurdistan TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/mjQptpc.png" alt="logo">
-      <div class="card-name">Kurdistan TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://5a3ed7a72ed4b.streamlock.net/live/SMIL:myStream.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Kurdistan TV (720p) [Not 24/7]', 'https://i.imgur.com/mjQptpc.png', 'https://5a3ed7a72ed4b.streamlock.net/live/SMIL:myStream.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Lalegül TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/wwCysFs.png" alt="logo">
-      <div class="card-name">Lalegül TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://lalegultv.netmedya.net/hls/lalegultv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Lalegül TV (720p) [Not 24/7]', 'https://i.imgur.com/wwCysFs.png', 'http://lalegultv.netmedya.net/hls/lalegultv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Life TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/lWeJxm0.png" alt="logo">
-      <div class="card-name">Life TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Life TV (720p) [Not 24/7]', 'https://i.imgur.com/lWeJxm0.png', 'https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Line TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/6GNp7f8.png" alt="logo">
-      <div class="card-name">Line TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/linetv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Line TV (720p) [Not 24/7]', 'https://i.imgur.com/6GNp7f8.png', 'https://edge1.socialsmart.tv/linetv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Love Nature (720p) [Geo-blocked]">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Love_Nature_TV.png/512px-Love_Nature_TV.png" alt="logo">
-      <div class="card-name">Love Nature (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://bamus-klowdtv.amagi.tv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Love Nature (720p) [Geo-blocked]', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Love_Nature_TV.png/512px-Love_Nature_TV.png', 'https://bamus-klowdtv.amagi.tv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Love Nature HD (1080i)">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Love_Nature_TV.png/512px-Love_Nature_TV.png" alt="logo">
-      <div class="card-name">Love Nature HD (1080i)</div>
-      <button class="play-btn" onclick="playChannel('http://78.130.250.2:8023/play/a02m/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Love Nature HD (1080i)', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Love_Nature_TV.png/512px-Love_Nature_TV.png', 'http://78.130.250.2:8023/play/a02m/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Luys TV (576p)">
-      <img src="https://i.imgur.com/9EruWIQ.png" alt="logo">
-      <div class="card-name">Luys TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a06i')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Luys TV (576p)', 'https://i.imgur.com/9EruWIQ.png', 'http://185.234.111.229:8000/play/a06i')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Malatya Vuslat TV (576p)">
-      <img src="https://i.imgur.com/FUaWv4s.png" alt="logo">
-      <div class="card-name">Malatya Vuslat TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a04x')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Malatya Vuslat TV (576p)', 'https://i.imgur.com/FUaWv4s.png', 'http://185.234.111.229:8000/play/a04x')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Manas TV (1080p)">
-      <img src="https://i.ibb.co/2Kvcj5Q/manas.jpg" alt="logo">
-      <div class="card-name">Manas TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://212.42.111.152:8080/hls/manas.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Manas TV (1080p)', 'https://i.ibb.co/2Kvcj5Q/manas.jpg', 'http://212.42.111.152:8080/hls/manas.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="MaviKaradeniz (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/wyWappU.png" alt="logo">
-      <div class="card-name">MaviKaradeniz (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_mavikaradeniz/mavikaradeniz/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('MaviKaradeniz (1080p) [Not 24/7]', 'https://i.imgur.com/wyWappU.png', 'https://live.artidijitalmedya.com/artidijital_mavikaradeniz/mavikaradeniz/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="MC TV (720p)">
-      <img src="https://upload.wikimedia.org/wikipedia/tr/c/ca/MC_TV_logosu.png" alt="logo">
-      <div class="card-name">MC TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://rrr.sz.xlcdn.com/?account=mceutv&amp;file=mc2&amp;output=playlist.m3u8&amp;protocol=https&amp;service=wowza&amp;type=live')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('MC TV (720p)', 'https://upload.wikimedia.org/wikipedia/tr/c/ca/MC_TV_logosu.png', 'https://rrr.sz.xlcdn.com/?account=mceutv&amp;file=mc2&amp;output=playlist.m3u8&amp;protocol=https&amp;service=wowza&amp;type=live')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Meltem TV (1080p)">
-      <img src="https://i.imgur.com/C3m6w5S.png" alt="logo">
-      <div class="card-name">Meltem TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://vhxyrsly.rocketcdn.com/meltemtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Meltem TV (1080p)', 'https://i.imgur.com/C3m6w5S.png', 'https://vhxyrsly.rocketcdn.com/meltemtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Mercan TV (576p)">
-      <img src="https://i.imgur.com/3CWV8bS.png" alt="logo">
-      <div class="card-name">Mercan TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a04k')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Mercan TV (576p)', 'https://i.imgur.com/3CWV8bS.png', 'http://185.234.111.229:8000/play/a04k')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Milyon TV (720p)">
-      <img src="https://i.imgur.com/lEIFDwo.png" alt="logo">
-      <div class="card-name">Milyon TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://sosyoapp-live.cdnnew.com/sosyo/buraya-bir-isim-verin.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Milyon TV (720p)', 'https://i.imgur.com/lEIFDwo.png', 'https://sosyoapp-live.cdnnew.com/sosyo/buraya-bir-isim-verin.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Minika Cocuk">
-      <img src="https://i.imgur.com/VCywMTv.png" alt="logo">
-      <div class="card-name">Minika Cocuk</div>
-      <button class="play-btn" onclick="playChannel('https://trkvz-live.daioncdn.net/minikago_cocuk/minikago_cocuk.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Minika Cocuk', 'https://i.imgur.com/VCywMTv.png', 'https://trkvz-live.daioncdn.net/minikago_cocuk/minikago_cocuk.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Minika Go">
-      <img src="https://i.imgur.com/qIoipDq.png" alt="logo">
-      <div class="card-name">Minika Go</div>
-      <button class="play-btn" onclick="playChannel('https://trkvz-live.daioncdn.net/minikago/minikago.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Minika Go', 'https://i.imgur.com/qIoipDq.png', 'https://trkvz-live.daioncdn.net/minikago/minikago.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="MTürk TV (1080p)">
-      <img src="https://i.imgur.com/xj1gvrq.png" alt="logo">
-      <div class="card-name">MTürk TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/muglaturk/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('MTürk TV (1080p)', 'https://i.imgur.com/xj1gvrq.png', 'https://edge1.socialsmart.tv/muglaturk/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="MyZen TV (1080p)">
-      <img src="https://i.imgur.com/fIi8o0C.png" alt="logo">
-      <div class="card-name">MyZen TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('MyZen TV (1080p)', 'https://i.imgur.com/fIi8o0C.png', 'https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="National Geographic (1080p) [Geo-blocked]">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Natgeologo.svg/512px-Natgeologo.svg.png" alt="logo">
-      <div class="card-name">National Geographic (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://saran-live.ercdn.net/natgeohd/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('National Geographic (1080p) [Geo-blocked]', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Natgeologo.svg/512px-Natgeologo.svg.png', 'https://saran-live.ercdn.net/natgeohd/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="National Geographic Wild">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/National_Geographic_Wild_logo.svg/512px-National_Geographic_Wild_logo.svg.png" alt="logo">
-      <div class="card-name">National Geographic Wild</div>
-      <button class="play-btn" onclick="playChannel('https://tv.arectv13.sbs/live/natgeowild.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('National Geographic Wild', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/National_Geographic_Wild_logo.svg/512px-National_Geographic_Wild_logo.svg.png', 'https://tv.arectv13.sbs/live/natgeowild.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Naturescape">
-      <img src="https://i.imgur.com/882kd90.png" alt="logo">
-      <div class="card-name">Naturescape</div>
-      <button class="play-btn" onclick="playChannel('http://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/64240b7e283aa40008f79f84/master.m3u8?appName=web&amp;appVersion=unknown&amp;clientTime=0&amp;deviceDNT=0&amp;deviceId=2c7b3f05-35fc-11ef-a031-2b5d494037a2&amp;deviceMake=Chrome&amp;deviceModel=web&amp;deviceType=web&amp;deviceVersion=unknown&amp;includeExtendedEvents=false&amp;serverSideAds=false&amp;sid=a5760903-3730-493d-a240-f38538ed67ca')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Naturescape', 'https://i.imgur.com/882kd90.png', 'http://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/64240b7e283aa40008f79f84/master.m3u8?appName=web&amp;appVersion=unknown&amp;clientTime=0&amp;deviceDNT=0&amp;deviceId=2c7b3f05-35fc-11ef-a031-2b5d494037a2&amp;deviceMake=Chrome&amp;deviceModel=web&amp;deviceType=web&amp;deviceVersion=unknown&amp;includeExtendedEvents=false&amp;serverSideAds=false&amp;sid=a5760903-3730-493d-a240-f38538ed67ca')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Nickelodeon">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Nickelodeon_2009_logo.svg/512px-Nickelodeon_2009_logo.svg.png" alt="logo">
-      <div class="card-name">Nickelodeon</div>
-      <button class="play-btn" onclick="playChannel('http://fl1.moveonjoy.com/NICKELODEON/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Nickelodeon', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Nickelodeon_2009_logo.svg/512px-Nickelodeon_2009_logo.svg.png', 'http://fl1.moveonjoy.com/NICKELODEON/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Nora TV (1080p)">
-      <img src="https://noratelevizyonu.com/wp-content/uploads/2023/11/nora-tv-logo-1.png" alt="logo">
-      <div class="card-name">Nora TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_noratv/noratv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Nora TV (1080p)', 'https://noratelevizyonu.com/wp-content/uploads/2023/11/nora-tv-logo-1.png', 'https://live.artidijitalmedya.com/artidijital_noratv/noratv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="NOW TV">
-      <img src="https://i.imgur.com/5EYjWK7.png" alt="logo">
-      <div class="card-name">NOW TV</div>
-      <button class="play-btn" onclick="playChannel('http://116.202.238.88/FOXTV_TR/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('NOW TV', 'https://i.imgur.com/5EYjWK7.png', 'http://116.202.238.88/FOXTV_TR/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="NTV (720p) [Not 24/7]">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/NTV_%28Turkey%29_logo.svg/300px-NTV_%28Turkey%29_logo.svg.png" alt="logo">
-      <div class="card-name">NTV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://dogus-live.daioncdn.net/ntv/ntv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('NTV (720p) [Not 24/7]', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/NTV_%28Turkey%29_logo.svg/300px-NTV_%28Turkey%29_logo.svg.png', 'https://dogus-live.daioncdn.net/ntv/ntv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="NTV Spor">
-      <img src="https://i.imgur.com/5pvsIsL.png" alt="logo">
-      <div class="card-name">NTV Spor</div>
-      <button class="play-btn" onclick="playChannel('http://46.4.193.238:8484/hls/ntvspor/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('NTV Spor', 'https://i.imgur.com/5pvsIsL.png', 'http://46.4.193.238:8484/hls/ntvspor/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Number 1 Ask (720p)">
-      <img src="https://i.imgur.com/slwbux7.png" alt="logo">
-      <div class="card-name">Number 1 Ask (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Number 1 Ask (720p)', 'https://i.imgur.com/slwbux7.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Number 1 Damar (720p)">
-      <img src="https://i.imgur.com/rYtbAGZ.png" alt="logo">
-      <div class="card-name">Number 1 Damar (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Number 1 Damar (720p)', 'https://i.imgur.com/rYtbAGZ.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Number 1 Dance (720p)">
-      <img src="https://i.imgur.com/ZM4PSyq.png" alt="logo">
-      <div class="card-name">Number 1 Dance (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Number 1 Dance (720p)', 'https://i.imgur.com/ZM4PSyq.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Number 1 Turk (576p)">
-      <img src="https://i.imgur.com/18zjk3q.png" alt="logo">
-      <div class="card-name">Number 1 Turk (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a068')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Number 1 Turk (576p)', 'https://i.imgur.com/18zjk3q.png', 'http://185.234.111.229:8000/play/a068')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Number 1 TV (720p)">
-      <img src="https://i.imgur.com/02cDIBi.png" alt="logo">
-      <div class="card-name">Number 1 TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/broadcast_5c9e17cd59e8b.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Number 1 TV (720p)', 'https://i.imgur.com/02cDIBi.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/broadcast_5c9e17cd59e8b.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Olay Türk TV Kayseri (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/e9ca6gc.png" alt="logo">
-      <div class="card-name">Olay Türk TV Kayseri (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_olayturk/olayturk/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Olay Türk TV Kayseri (720p) [Geo-blocked]', 'https://i.imgur.com/e9ca6gc.png', 'https://live.artidijitalmedya.com/artidijital_olayturk/olayturk/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="On4 TV (1080p)">
-      <img src="https://i.imgur.com/qGRa1KI.png" alt="logo">
-      <div class="card-name">On4 TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/on4/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('On4 TV (1080p)', 'https://i.imgur.com/qGRa1KI.png', 'https://edge1.socialsmart.tv/on4/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="On 6 (1080p)">
-      <img src="https://i.imgur.com/k7rS2gC.png" alt="logo">
-      <div class="card-name">On 6 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_kanal16/kanal16/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('On 6 (1080p)', 'https://i.imgur.com/k7rS2gC.png', 'https://live.artidijitalmedya.com/artidijital_kanal16/kanal16/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ON Medya Haber (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/thvk3Py.png" alt="logo">
-      <div class="card-name">ON Medya Haber (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('http://live.arkumedia.com:1935/marmaratv/marmaratv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ON Medya Haber (720p) [Geo-blocked]', 'https://i.imgur.com/thvk3Py.png', 'http://live.arkumedia.com:1935/marmaratv/marmaratv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Öncü TV (1024p) [Not 24/7]">
-      <img src="https://i.imgur.com/TGPNYrD.jpg" alt="logo">
-      <div class="card-name">Öncü TV (1024p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/oncurtv/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Öncü TV (1024p) [Not 24/7]', 'https://i.imgur.com/TGPNYrD.jpg', 'https://edge1.socialsmart.tv/oncurtv/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Pamukkale TV (614p)">
-      <img src="https://i.imgur.com/8fHgTIr.png" alt="logo">
-      <div class="card-name">Pamukkale TV (614p)</div>
-      <button class="play-btn" onclick="playChannel('http://ms1.sanlisoy.com:1935/pamukkaletv/pamukkaletv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Pamukkale TV (614p)', 'https://i.imgur.com/8fHgTIr.png', 'http://ms1.sanlisoy.com:1935/pamukkaletv/pamukkaletv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Persiana Turkiye">
-      <img src="https://www.lyngsat.com/logo/tv/pp/persiana-turkiye-fr.png" alt="logo">
-      <div class="card-name">Persiana Turkiye</div>
-      <button class="play-btn" onclick="playChannel('https://turkhls.persiana.live/hls/stream.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Persiana Turkiye', 'https://www.lyngsat.com/logo/tv/pp/persiana-turkiye-fr.png', 'https://turkhls.persiana.live/hls/stream.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Dance (1080p)">
-      <img src="https://i.imgur.com/QpPteBO.png" alt="logo">
-      <div class="card-name">Power Dance (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/dance/dance.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Dance (1080p)', 'https://i.imgur.com/QpPteBO.png', 'https://livetv.powerapp.com.tr/dance/dance.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Love (1080p)">
-      <img src="https://i.imgur.com/0RzUswR.png" alt="logo">
-      <div class="card-name">Power Love (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/plove/love.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Love (1080p)', 'https://i.imgur.com/0RzUswR.png', 'https://livetv.powerapp.com.tr/plove/love.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Plus (1080p)">
-      <img src="https://i.imgur.com/susAPo6.png" alt="logo">
-      <div class="card-name">Power Plus (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/pplustv/pplustv.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Plus (1080p)', 'https://i.imgur.com/susAPo6.png', 'https://livetv.powerapp.com.tr/pplustv/pplustv.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Turk (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/9OPoXQG.png" alt="logo">
-      <div class="card-name">Power Turk (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Turk (1080p) [Not 24/7]', 'https://i.imgur.com/9OPoXQG.png', 'https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Türk Akustik (1080p)">
-      <img src="https://i.imgur.com/driabBO.png" alt="logo">
-      <div class="card-name">Power Türk Akustik (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/pturkakustik/akustik.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Türk Akustik (1080p)', 'https://i.imgur.com/driabBO.png', 'https://livetv.powerapp.com.tr/pturkakustik/akustik.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Türk En Iyiler (1080p)">
-      <img src="https://i.imgur.com/CM2Z9lg.png" alt="logo">
-      <div class="card-name">Power Türk En Iyiler (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/pturkeniyiler/eniyiler.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Türk En Iyiler (1080p)', 'https://i.imgur.com/CM2Z9lg.png', 'https://livetv.powerapp.com.tr/pturkeniyiler/eniyiler.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Türk Slow (1080p)">
-      <img src="https://i.imgur.com/tQSoQXW.png" alt="logo">
-      <div class="card-name">Power Türk Slow (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Türk Slow (1080p)', 'https://i.imgur.com/tQSoQXW.png', 'https://livetv.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power Türk Taptaze (1080p)">
-      <img src="https://i.imgur.com/a5nW3HU.png" alt="logo">
-      <div class="card-name">Power Türk Taptaze (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power Türk Taptaze (1080p)', 'https://i.imgur.com/a5nW3HU.png', 'https://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Power TV (1080p)">
-      <img src="https://i.imgur.com/XSL1gd7.png" alt="logo">
-      <div class="card-name">Power TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Power TV (1080p)', 'https://i.imgur.com/XSL1gd7.png', 'https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Rehber TV (720p)">
-      <img src="https://i.imgur.com/fpkaw78.png" alt="logo">
-      <div class="card-name">Rehber TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://yayin30.haber100.com/live/rehbertv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Rehber TV (720p)', 'https://i.imgur.com/fpkaw78.png', 'https://yayin30.haber100.com/live/rehbertv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="RTG TV">
-      <img src="https://i.imgur.com/ZMKPAho.png" alt="logo">
-      <div class="card-name">RTG TV</div>
-      <button class="play-btn" onclick="playChannel('http://194.143.148.28:8080/RTG_HD/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('RTG TV', 'https://i.imgur.com/ZMKPAho.png', 'http://194.143.148.28:8080/RTG_HD/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Rumeli TV (576p)">
-      <img src="https://i.imgur.com/xpRPX3a.png" alt="logo">
-      <div class="card-name">Rumeli TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a023')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Rumeli TV (576p)', 'https://i.imgur.com/xpRPX3a.png', 'http://185.234.111.229:8000/play/a023')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="S Sport">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/S_Sport_logo1.png" alt="logo">
-      <div class="card-name">S Sport</div>
-      <button class="play-btn" onclick="playChannel('https://bcovlive-a.akamaihd.net/540fcb034b144b848e7ff887f61a293a/eu-central-1/6415845530001/profile_0/chunklist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('S Sport', 'https://upload.wikimedia.org/wikipedia/commons/a/a9/S_Sport_logo1.png', 'https://bcovlive-a.akamaihd.net/540fcb034b144b848e7ff887f61a293a/eu-central-1/6415845530001/profile_0/chunklist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="S Sport 2">
-      <img src="https://i.imgur.com/2jIItAy.png" alt="logo">
-      <div class="card-name">S Sport 2</div>
-      <button class="play-btn" onclick="playChannel('https://bcovlive-a.akamaihd.net/29c60f23ea4840ba8726925a77fcfd0b/eu-central-1/6415845530001/profile_0/chunklist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('S Sport 2', 'https://i.imgur.com/2jIItAy.png', 'https://bcovlive-a.akamaihd.net/29c60f23ea4840ba8726925a77fcfd0b/eu-central-1/6415845530001/profile_0/chunklist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sarıyer TV (360p)">
-      <img src="https://i.imgur.com/lfHVabz.png" alt="logo">
-      <div class="card-name">Sarıyer TV (360p)</div>
-      <button class="play-btn" onclick="playChannel('https://s01.vpis.io/sariyer/sariyer.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sarıyer TV (360p)', 'https://i.imgur.com/lfHVabz.png', 'https://s01.vpis.io/sariyer/sariyer.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sat 7 Türk (720p)">
-      <img src="https://i.imgur.com/cKQIK4i.png" alt="logo">
-      <div class="card-name">Sat 7 Türk (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://svs.itworkscdn.net/sat7turklive/sat7turk.smil/playlist_dvr.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sat 7 Türk (720p)', 'https://i.imgur.com/cKQIK4i.png', 'https://svs.itworkscdn.net/sat7turklive/sat7turk.smil/playlist_dvr.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Satranç TV (480p) [Not 24/7]">
-      <img src="https://i.imgur.com/TXDV1ty.png" alt="logo">
-      <div class="card-name">Satranç TV (480p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://139.162.182.79/live/test/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Satranç TV (480p) [Not 24/7]', 'https://i.imgur.com/TXDV1ty.png', 'http://139.162.182.79/live/test/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Semerkand TV (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/UVGGrQd.png" alt="logo">
-      <div class="card-name">Semerkand TV (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtisvwurbfcyslive/broadcast_58d915bd40efc.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Semerkand TV (1080p) [Not 24/7]', 'https://i.imgur.com/UVGGrQd.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtisvwurbfcyslive/broadcast_58d915bd40efc.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Show Max">
-      <img src="https://i.imgur.com/456FWA7.png" alt="logo">
-      <div class="card-name">Show Max</div>
-      <button class="play-btn" onclick="playChannel('https://canlitvulusal.xyz/live/showmax/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Show Max', 'https://i.imgur.com/456FWA7.png', 'https://canlitvulusal.xyz/live/showmax/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Show Turk">
-      <img src="https://i.imgur.com/fdZpGDj.png" alt="logo">
-      <div class="card-name">Show Turk</div>
-      <button class="play-btn" onclick="playChannel('https://canlitvulusal.xyz/live/showturk/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Show Turk', 'https://i.imgur.com/fdZpGDj.png', 'https://canlitvulusal.xyz/live/showturk/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Show TV">
-      <img src="https://i.imgur.com/1l7SCCu.png" alt="logo">
-      <div class="card-name">Show TV</div>
-      <button class="play-btn" onclick="playChannel('http://nimplus3.bozztv.com/showtvturk/showtvturk/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Show TV', 'https://i.imgur.com/1l7SCCu.png', 'http://nimplus3.bozztv.com/showtvturk/showtvturk/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sinop Yildiz TV (360p)">
-      <img src="https://i.imgur.com/CjgbQTk.png" alt="logo">
-      <div class="card-name">Sinop Yildiz TV (360p)</div>
-      <button class="play-btn" onclick="playChannel('https://s01.vpis.io/sinopyildiz/sinopyildiz.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sinop Yildiz TV (360p)', 'https://i.imgur.com/CjgbQTk.png', 'https://s01.vpis.io/sinopyildiz/sinopyildiz.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sozcu TV (1080p)">
-      <img src="https://i.imgur.com/BxpdvsG.png" alt="logo">
-      <div class="card-name">Sozcu TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00y')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sozcu TV (1080p)', 'https://i.imgur.com/BxpdvsG.png', 'http://185.234.111.229:8000/play/a00y')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sports TV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/tGTVcVe.jpg" alt="logo">
-      <div class="card-name">Sports TV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.sportstv.com.tr/hls/low/sportstv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sports TV (720p) [Geo-blocked]', 'https://i.imgur.com/tGTVcVe.jpg', 'https://live.sportstv.com.tr/hls/low/sportstv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Star TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/9O3DHRB.png" alt="logo">
-      <div class="card-name">Star TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://dogus-live.daioncdn.net/startv/startv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Star TV (720p) [Not 24/7]', 'https://i.imgur.com/9O3DHRB.png', 'https://dogus-live.daioncdn.net/startv/startv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Sun RTV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/64tph9N.png" alt="logo">
-      <div class="card-name">Sun RTV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_sunrtv/sunrtv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Sun RTV (720p) [Not 24/7]', 'https://i.imgur.com/64tph9N.png', 'https://live.artidijitalmedya.com/artidijital_sunrtv/sunrtv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tabii Spor 6 (720p) [Geo-blocked]">
-      <img src="https://cms-tabii-public-image.tabii.com/int/w300/43020.jpeg" alt="logo">
-      <div class="card-name">Tabii Spor 6 (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://vbtob9hyq58eiophct5qctxr2.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tabii Spor 6 (720p) [Geo-blocked]', 'https://cms-tabii-public-image.tabii.com/int/w300/43020.jpeg', 'https://vbtob9hyq58eiophct5qctxr2.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tarim TV (1080p)">
-      <img src="https://i.imgur.com/q30sFms.png" alt="logo">
-      <div class="card-name">Tarim TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://content.tvkur.com/l/c7e1da7mm25p552d9u9g/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tarim TV (1080p)', 'https://i.imgur.com/q30sFms.png', 'https://content.tvkur.com/l/c7e1da7mm25p552d9u9g/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tatlises TV (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/et1sbyq.png" alt="logo">
-      <div class="card-name">Tatlises TV (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_tatlisestv/tatlisestv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tatlises TV (1080p) [Not 24/7]', 'https://i.imgur.com/et1sbyq.png', 'https://live.artidijitalmedya.com/artidijital_tatlisestv/tatlisestv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TAY TV (360p)">
-      <img src="https://www.dsmart.com.tr/api/v1/public/images/kanallar/tay_tv.png" alt="logo">
-      <div class="card-name">TAY TV (360p)</div>
-      <button class="play-btn" onclick="playChannel('https://duhnet.hipodrom.com/S2/HLS_LIVE/mislitaynp/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TAY TV (360p)', 'https://www.dsmart.com.tr/api/v1/public/images/kanallar/tay_tv.png', 'https://duhnet.hipodrom.com/S2/HLS_LIVE/mislitaynp/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TBMM TV (720p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TBMM_TV_logo.svg/512px-TBMM_TV_logo.svg.png" alt="logo">
-      <div class="card-name">TBMM TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://meclistv-live.ercdn.net/meclistv/meclistv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TBMM TV (720p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TBMM_TV_logo.svg/512px-TBMM_TV_logo.svg.png', 'https://meclistv-live.ercdn.net/meclistv/meclistv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tek Rumeli TV">
-      <img src="https://i.imgur.com/skeNzbc.png" alt="logo">
-      <div class="card-name">Tek Rumeli TV</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a014')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tek Rumeli TV', 'https://i.imgur.com/skeNzbc.png', 'http://185.234.111.229:8000/play/a014')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tele 1 (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/tr/4/43/Tele1_logosu.png" alt="logo">
-      <div class="card-name">Tele 1 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01y')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tele 1 (1080p)', 'https://upload.wikimedia.org/wikipedia/tr/4/43/Tele1_logosu.png', 'http://185.234.111.229:8000/play/a01y')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tempo TV (720p)">
-      <img src="https://i.imgur.com/tZpx32y.png" alt="logo">
-      <div class="card-name">Tempo TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_tempotv/tempotv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tempo TV (720p)', 'https://i.imgur.com/tZpx32y.png', 'https://live.artidijitalmedya.com/artidijital_tempotv/tempotv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Teve2 (1080p)">
-      <img src="https://i.imgur.com/rsoSLih.png" alt="logo">
-      <div class="card-name">Teve2 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://demiroren-live.daioncdn.net/teve2/teve2.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Teve2 (1080p)', 'https://i.imgur.com/rsoSLih.png', 'https://demiroren-live.daioncdn.net/teve2/teve2.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TGRT Belgesel TV (576p)">
-      <img src="https://i.imgur.com/VwWTnf0.png" alt="logo">
-      <div class="card-name">TGRT Belgesel TV (576p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv.ensonhaber.com/tv/tr/tgrtbelgesel/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TGRT Belgesel TV (576p)', 'https://i.imgur.com/VwWTnf0.png', 'https://tv.ensonhaber.com/tv/tr/tgrtbelgesel/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TGRT Europe (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/TGRT_EU.png/512px-TGRT_EU.png" alt="logo">
-      <div class="card-name">TGRT Europe (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://canli.tgrteu.com/tgrteu.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TGRT Europe (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/TGRT_EU.png/512px-TGRT_EU.png', 'https://canli.tgrteu.com/tgrteu.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TGRT Haber (720p)">
-      <img src="https://i.imgur.com/PrxwKDw.png" alt="logo">
-      <div class="card-name">TGRT Haber (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://canli.tgrthaber.com/tgrt.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TGRT Haber (720p)', 'https://i.imgur.com/PrxwKDw.png', 'https://canli.tgrthaber.com/tgrt.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Tivi 6 (720p)">
-      <img src="https://i.imgur.com/Mbi0jbz.png" alt="logo">
-      <div class="card-name">Tivi 6 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Tivi 6 (720p)', 'https://i.imgur.com/Mbi0jbz.png', 'https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="tiviTÜRK (720p) [Not 24/7]">
-      <img src="https://i.ibb.co/9TDs8q8/IFE6LHH.jpg" alt="logo">
-      <div class="card-name">tiviTÜRK (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://stream.tiviturk.de/live/tiviturk.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('tiviTÜRK (720p) [Not 24/7]', 'https://i.ibb.co/9TDs8q8/IFE6LHH.jpg', 'https://stream.tiviturk.de/live/tiviturk.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TJK TV (1080p)">
-      <img src="https://i.imgur.com/3zHdkYG.png" alt="logo">
-      <div class="card-name">TJK TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://tjktv-live.tjk.org/tjktv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TJK TV (1080p)', 'https://i.imgur.com/3zHdkYG.png', 'https://tjktv-live.tjk.org/tjktv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TMB">
-      <img src="https://i.imgur.com/28AyWHe.png" alt="logo">
-      <div class="card-name">TMB</div>
-      <button class="play-btn" onclick="playChannel('https://raw.githubusercontent.com/UzunMuhalefet/streams/main/myvideo-az/tmb-tv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TMB', 'https://i.imgur.com/28AyWHe.png', 'https://raw.githubusercontent.com/UzunMuhalefet/streams/main/myvideo-az/tmb-tv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ton TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/f0Soeob.png" alt="logo">
-      <div class="card-name">Ton TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_tontv/tontv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ton TV (720p) [Not 24/7]', 'https://i.imgur.com/f0Soeob.png', 'https://live.artidijitalmedya.com/artidijital_tontv/tontv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Toprak TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/JGnS0qs.png" alt="logo">
-      <div class="card-name">Toprak TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://59cba4d34b678.streamlock.net/canlitv/topraktv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Toprak TV (720p) [Not 24/7]', 'https://i.imgur.com/JGnS0qs.png', 'https://59cba4d34b678.streamlock.net/canlitv/topraktv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Trakya Türk TV (720p)">
-      <img src="https://trakyaturktv.com/uploads/library/2024/04/unnamed1.jpg" alt="logo">
-      <div class="card-name">Trakya Türk TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_trakyaturk/trakyaturk/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Trakya Türk TV (720p)', 'https://trakyaturktv.com/uploads/library/2024/04/unnamed1.jpg', 'https://live.artidijitalmedya.com/artidijital_trakyaturk/trakyaturk/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT 1 (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/TRT_1_logo_%282021-%29.svg/512px-TRT_1_logo_%282021-%29.svg.png" alt="logo">
-      <div class="card-name">TRT 1 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00c')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT 1 (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/TRT_1_logo_%282021-%29.svg/512px-TRT_1_logo_%282021-%29.svg.png', 'http://185.234.111.229:8000/play/a00c')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT 2">
-      <img src="https://i.imgur.com/iOCQdyD.png" alt="logo">
-      <div class="card-name">TRT 2</div>
-      <button class="play-btn" onclick="playChannel('https://trt2.blutv.com/blutv_trt2/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT 2', 'https://i.imgur.com/iOCQdyD.png', 'https://trt2.blutv.com/blutv_trt2/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT 3">
-      <img src="https://i.imgur.com/JrWFwBd.png" alt="logo">
-      <div class="card-name">TRT 3</div>
-      <button class="play-btn" onclick="playChannel('https://tv-trt3.live.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT 3', 'https://i.imgur.com/JrWFwBd.png', 'https://tv-trt3.live.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Arabi (1080p)">
-      <img src="https://i.imgur.com/dEfI2M9.png" alt="logo">
-      <div class="card-name">TRT Arabi (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a002')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Arabi (1080p)', 'https://i.imgur.com/dEfI2M9.png', 'http://185.234.111.229:8000/play/a002')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Avaz (720p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TRT_Avaz_logo.svg/512px-TRT_Avaz_logo.svg.png" alt="logo">
-      <div class="card-name">TRT Avaz (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv-trtavaz.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Avaz (720p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TRT_Avaz_logo.svg/512px-TRT_Avaz_logo.svg.png', 'https://tv-trtavaz.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Belgesel (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TRT_Belgesel_logo_%282019-%29.svg/512px-TRT_Belgesel_logo_%282019-%29.svg.png" alt="logo">
-      <div class="card-name">TRT Belgesel (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00f')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Belgesel (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TRT_Belgesel_logo_%282019-%29.svg/512px-TRT_Belgesel_logo_%282019-%29.svg.png', 'http://185.234.111.229:8000/play/a00f')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Cocuk (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/TRT_%C3%87ocuk_logo_%282021%29.svg/512px-TRT_%C3%87ocuk_logo_%282021%29.svg.png" alt="logo">
-      <div class="card-name">TRT Cocuk (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00b')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Cocuk (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/TRT_%C3%87ocuk_logo_%282021%29.svg/512px-TRT_%C3%87ocuk_logo_%282021%29.svg.png', 'http://185.234.111.229:8000/play/a00b')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Diyanet Çocuk (720p)">
-      <img src="https://i.imgur.com/8PmXz9t.png" alt="logo">
-      <div class="card-name">TRT Diyanet Çocuk (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Diyanet Çocuk (720p)', 'https://i.imgur.com/8PmXz9t.png', 'https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT EBA Ilkokul (720p)">
-      <img src="https://i.imgur.com/CRBfZi4.png" alt="logo">
-      <div class="card-name">TRT EBA Ilkokul (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv-e-okul00.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT EBA Ilkokul (720p)', 'https://i.imgur.com/CRBfZi4.png', 'https://tv-e-okul00.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT EBA Lise (720p)">
-      <img src="https://i.imgur.com/vj2L2L2.png" alt="logo">
-      <div class="card-name">TRT EBA Lise (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv-e-okul02.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT EBA Lise (720p)', 'https://i.imgur.com/vj2L2L2.png', 'https://tv-e-okul02.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Haber (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/TRT_Haber_Eyl%C3%BCl_2020_Logo.svg/512px-TRT_Haber_Eyl%C3%BCl_2020_Logo.svg.png" alt="logo">
-      <div class="card-name">TRT Haber (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00d')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Haber (1080p)', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/TRT_Haber_Eyl%C3%BCl_2020_Logo.svg/512px-TRT_Haber_Eyl%C3%BCl_2020_Logo.svg.png', 'http://185.234.111.229:8000/play/a00d')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Muzik (1080p)">
-      <img src="https://i.imgur.com/JgUzRH8.png" alt="logo">
-      <div class="card-name">TRT Muzik (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00i')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Muzik (1080p)', 'https://i.imgur.com/JgUzRH8.png', 'http://185.234.111.229:8000/play/a00i')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Spor (1080p)">
-      <img src="https://i.imgur.com/6tv0zxh.png" alt="logo">
-      <div class="card-name">TRT Spor (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a00e')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Spor (1080p)', 'https://i.imgur.com/6tv0zxh.png', 'http://185.234.111.229:8000/play/a00e')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Spor Yildiz (1080p) [Geo-blocked]">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg/460px-TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg.png" alt="logo">
-      <div class="card-name">TRT Spor Yildiz (1080p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://tv-trtspor2.medya.trt.com.tr/master.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Spor Yildiz (1080p) [Geo-blocked]', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg/460px-TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg.png', 'https://tv-trtspor2.medya.trt.com.tr/master.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TRT Turk">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/TRT_T%C3%BCrk_logo.svg/512px-TRT_T%C3%BCrk_logo.svg.png" alt="logo">
-      <div class="card-name">TRT Turk</div>
-      <button class="play-btn" onclick="playChannel('https://trtturk.blutv.com/blutv_trtturk2/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TRT Turk', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/TRT_T%C3%BCrk_logo.svg/512px-TRT_T%C3%BCrk_logo.svg.png', 'https://trtturk.blutv.com/blutv_trtturk2/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TürkHaber (720p)">
-      <img src="https://i.imgur.com/2AcRKdL.png" alt="logo">
-      <div class="card-name">TürkHaber (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TürkHaber (720p)', 'https://i.imgur.com/2AcRKdL.png', 'https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Turksat Saat">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/T%C3%BCrksat_logo.svg/320px-T%C3%BCrksat_logo.svg.png" alt="logo">
-      <div class="card-name">Turksat Saat</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01f')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Turksat Saat', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/T%C3%BCrksat_logo.svg/320px-T%C3%BCrksat_logo.svg.png', 'http://185.234.111.229:8000/play/a01f')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Turksat Tanitim">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/T%C3%BCrksat_logo.svg/320px-T%C3%BCrksat_logo.svg.png" alt="logo">
-      <div class="card-name">Turksat Tanitim</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01d')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Turksat Tanitim', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/T%C3%BCrksat_logo.svg/320px-T%C3%BCrksat_logo.svg.png', 'http://185.234.111.229:8000/play/a01d')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 1 (720p)">
-      <img src="https://i.imgur.com/8CtrYVb.png" alt="logo">
-      <div class="card-name">TV 1 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://edge1.socialsmart.tv/tv1/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 1 (720p)', 'https://i.imgur.com/8CtrYVb.png', 'https://edge1.socialsmart.tv/tv1/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV4 (720p)">
-      <img src="https://i.imgur.com/UpsQsbd.png" alt="logo">
-      <div class="card-name">TV4 (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://turkmedya-live.ercdn.net/tv4/tv4.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV4 (720p)', 'https://i.imgur.com/UpsQsbd.png', 'https://turkmedya-live.ercdn.net/tv4/tv4.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 8 (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/300px-Tv8_Yeni_Logo.png" alt="logo">
-      <div class="card-name">TV 8 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&amp;ce=3')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 8 (1080p)', 'https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/300px-Tv8_Yeni_Logo.png', 'https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&amp;ce=3')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 8.5 (720p)">
-      <img src="https://i.imgur.com/QuelSsc.png" alt="logo">
-      <div class="card-name">TV 8.5 (720p)</div>
-      <button class="play-btn" onclick="playChannel('http://bozztv.com/gin-dvrfl05/gin-tv8_5/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 8.5 (720p)', 'https://i.imgur.com/QuelSsc.png', 'http://bozztv.com/gin-dvrfl05/gin-tv8_5/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV8int (1080i)">
-      <img src="https://upload.wikimedia.org/wikipedia/tr/c/c2/TV8_Int_logosu.jpg" alt="logo">
-      <div class="card-name">TV8int (1080i)</div>
-      <button class="play-btn" onclick="playChannel('http://77.83.120.135:8001/play/a0wy')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV8int (1080i)', 'https://upload.wikimedia.org/wikipedia/tr/c/c2/TV8_Int_logosu.jpg', 'http://77.83.120.135:8001/play/a0wy')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 38 (360p) [Not 24/7]">
-      <img src="https://i.imgur.com/KDBXLqn.png" alt="logo">
-      <div class="card-name">TV 38 (360p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://59cba4d34b678.streamlock.net/live/tv38/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 38 (360p) [Not 24/7]', 'https://i.imgur.com/KDBXLqn.png', 'https://59cba4d34b678.streamlock.net/live/tv38/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 41 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/6T472LM.png" alt="logo">
-      <div class="card-name">TV 41 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream.taksimbilisim.com:1935/tv41/bant1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 41 (720p) [Not 24/7]', 'https://i.imgur.com/6T472LM.png', 'http://stream.taksimbilisim.com:1935/tv41/bant1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 52 (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/k4R5CzO.png" alt="logo">
-      <div class="card-name">TV 52 (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://stream.taksimbilisim.com:1935/tv52/smil:tv52.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 52 (720p) [Not 24/7]', 'https://i.imgur.com/k4R5CzO.png', 'http://stream.taksimbilisim.com:1935/tv52/smil:tv52.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 100 (1080p)">
-      <img src="https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/TV100_logo.png/300px-TV100_logo.png" alt="logo">
-      <div class="card-name">TV 100 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 100 (1080p)', 'https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/TV100_logo.png/300px-TV100_logo.png', 'https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 264 (1080p)">
-      <img src="https://i.imgur.com/tudXdOZ.png" alt="logo">
-      <div class="card-name">TV 264 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://b01c02nl.mediatriple.net/videoonlylive/mtdxkkitgbrckilive/broadcast_5ee244263fd6d.smil/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 264 (1080p)', 'https://i.imgur.com/tudXdOZ.png', 'https://b01c02nl.mediatriple.net/videoonlylive/mtdxkkitgbrckilive/broadcast_5ee244263fd6d.smil/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV 2020 (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/rtfsNdd.png" alt="logo">
-      <div class="card-name">TV 2020 (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://sc-kuzeykibrissmarttv.ercdn.net/tv2020/bantp1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV 2020 (576p) [Not 24/7]', 'https://i.imgur.com/rtfsNdd.png', 'https://sc-kuzeykibrissmarttv.ercdn.net/tv2020/bantp1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV A (720p)">
-      <img src="https://www.lyngsat.com/logo/tv/tt/tva-tr.png" alt="logo">
-      <div class="card-name">TV A (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_tva/tva/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV A (720p)', 'https://www.lyngsat.com/logo/tv/tt/tva-tr.png', 'https://live.artidijitalmedya.com/artidijital_tva/tva/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TV Den (576p) [Not 24/7]">
-      <img src="https://i.imgur.com/Uhg95Ze.png" alt="logo">
-      <div class="card-name">TV Den (576p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://canli.tvden.com.tr/hls/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TV Den (576p) [Not 24/7]', 'https://i.imgur.com/Uhg95Ze.png', 'http://canli.tvden.com.tr/hls/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TVnet (720p)">
-      <img src="https://i.imgur.com/mQo8yWQ.png" alt="logo">
-      <div class="card-name">TVnet (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TVnet (720p)', 'https://i.imgur.com/mQo8yWQ.png', 'https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="TYT Turk (720p)">
-      <img src="https://tytturk.com/upload/tyt-logo.png" alt="logo">
-      <div class="card-name">TYT Turk (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://cdn4.yayin.com.tr/tytturk/index.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('TYT Turk (720p)', 'https://tytturk.com/upload/tyt-logo.png', 'https://cdn4.yayin.com.tr/tytturk/index.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="UçanKuş TV (720p)">
-      <img src="https://i.imgur.com/4j8WrIu.png" alt="logo">
-      <div class="card-name">UçanKuş TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://ucankus-live.cdnnew.com/ucankus/ucankus.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('UçanKuş TV (720p)', 'https://i.imgur.com/4j8WrIu.png', 'https://ucankus-live.cdnnew.com/ucankus/ucankus.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ülke TV (720p)">
-      <img src="https://i.imgur.com/wdWR7Qk.png" alt="logo">
-      <div class="card-name">Ülke TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://mn-nl.mncdn.com/blutv_ulketv2/live.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ülke TV (720p)', 'https://i.imgur.com/wdWR7Qk.png', 'https://mn-nl.mncdn.com/blutv_ulketv2/live.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Ulusal Kanal (720p)">
-      <img src="https://i.imgur.com/EwSg612.png" alt="logo">
-      <div class="card-name">Ulusal Kanal (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://stream.guventechnology.com:19360/ulusaltv/ulusaltv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Ulusal Kanal (720p)', 'https://i.imgur.com/EwSg612.png', 'https://stream.guventechnology.com:19360/ulusaltv/ulusaltv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Üniversite TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/KeauaSh.png" alt="logo">
-      <div class="card-name">Üniversite TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://vdo.digitalbox.xyz:3986/live/unitvlive.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Üniversite TV (720p) [Not 24/7]', 'https://i.imgur.com/KeauaSh.png', 'https://vdo.digitalbox.xyz:3986/live/unitvlive.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Urfa Natik TV (720p)">
-      <img src="https://static.daktilo.com/sites/1278/uploads/2023/01/10/large/desktop.png" alt="logo">
-      <div class="card-name">Urfa Natik TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_urfanatiktv/urfanatiktv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Urfa Natik TV (720p)', 'https://static.daktilo.com/sites/1278/uploads/2023/01/10/large/desktop.png', 'https://live.artidijitalmedya.com/artidijital_urfanatiktv/urfanatiktv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ÜÜ TV 1 (1080p)">
-      <img src="https://i.imgur.com/H5kOQz5.png" alt="logo">
-      <div class="card-name">ÜÜ TV 1 (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://uskudarunv.mediatriple.net/uskudarunv/uskudar1/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ÜÜ TV 1 (1080p)', 'https://i.imgur.com/H5kOQz5.png', 'https://uskudarunv.mediatriple.net/uskudarunv/uskudar1/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="ÜÜ TV Üsküdar Üniversitesi TV (1080p) [Not 24/7]">
-      <img src="https://i.imgur.com/FjFjdY5.png" alt="logo">
-      <div class="card-name">ÜÜ TV Üsküdar Üniversitesi TV (1080p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('https://uskudarunv.mediatriple.net/uskudarunv/uskudar2/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('ÜÜ TV Üsküdar Üniversitesi TV (1080p) [Not 24/7]', 'https://i.imgur.com/FjFjdY5.png', 'https://uskudarunv.mediatriple.net/uskudarunv/uskudar2/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="V TV (720p)">
-      <img src="https://www.vtv.net.tr/uploads/logo/sitelogo_4.jpg" alt="logo">
-      <div class="card-name">V TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('#EXTVLCOPT:http-referrer=https://www.vtv.net.tr/')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('V TV (720p)', 'https://www.vtv.net.tr/uploads/logo/sitelogo_4.jpg', '#EXTVLCOPT:http-referrer=https://www.vtv.net.tr/')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Vav TV (1080p)">
-      <img src="https://i.imgur.com/jw0gB8L.png" alt="logo">
-      <div class="card-name">Vav TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('http://185.234.111.229:8000/play/a01n')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Vav TV (1080p)', 'https://i.imgur.com/jw0gB8L.png', 'http://185.234.111.229:8000/play/a01n')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Viasat Explore">
-      <img src="https://i.imgur.com/DyT5pKB.png" alt="logo">
-      <div class="card-name">Viasat Explore</div>
-      <button class="play-btn" onclick="playChannel('https://tv.arectv29.sbs/live/viasathistory.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Viasat Explore', 'https://i.imgur.com/DyT5pKB.png', 'https://tv.arectv29.sbs/live/viasathistory.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Vive Kanal D Drama (1080p)">
-      <img src="https://i.imgur.com/WIeZMKT.png" alt="logo">
-      <div class="card-name">Vive Kanal D Drama (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Vive Kanal D Drama (1080p)', 'https://i.imgur.com/WIeZMKT.png', 'https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Vizyon 58 TV (720p) [Geo-blocked]">
-      <img src="https://i.imgur.com/tITBc59.png" alt="logo">
-      <div class="card-name">Vizyon 58 TV (720p) [Geo-blocked]</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_vizyon58/vizyon58/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Vizyon 58 TV (720p) [Geo-blocked]', 'https://i.imgur.com/tITBc59.png', 'https://live.artidijitalmedya.com/artidijital_vizyon58/vizyon58/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Vuslat TV (720p) [Not 24/7]">
-      <img src="https://i.imgur.com/5AiUlIJ.png" alt="logo">
-      <div class="card-name">Vuslat TV (720p) [Not 24/7]</div>
-      <button class="play-btn" onclick="playChannel('http://yayin3.canlitv.com:1935/live/vuslattv/HasBahCa.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Vuslat TV (720p) [Not 24/7]', 'https://i.imgur.com/5AiUlIJ.png', 'http://yayin3.canlitv.com:1935/live/vuslattv/HasBahCa.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Woman TV (1080p)">
-      <img src="https://i.imgur.com/f2zGoV3.png" alt="logo">
-      <div class="card-name">Woman TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://embedlp.becdn.net/womantv.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Woman TV (1080p)', 'https://i.imgur.com/f2zGoV3.png', 'https://embedlp.becdn.net/womantv.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="World Turk TV (1080p)">
-      <img src="https://www.artidijitalmedya.com/image/400x400/cdn/channels/v1/logo_151.png" alt="logo">
-      <div class="card-name">World Turk TV (1080p)</div>
-      <button class="play-btn" onclick="playChannel('https://live.artidijitalmedya.com/artidijital_worldturk/worldturk/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('World Turk TV (1080p)', 'https://www.artidijitalmedya.com/image/400x400/cdn/channels/v1/logo_151.png', 'https://live.artidijitalmedya.com/artidijital_worldturk/worldturk/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Yildiz TV En">
-      <img src="https://i.imgur.com/BaFcCP5.png" alt="logo">
-      <div class="card-name">Yildiz TV En</div>
-      <button class="play-btn" onclick="playChannel('https://cdn-yildiz.yayin.com.tr/yildiz/yildiz/playlist.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Yildiz TV En', 'https://i.imgur.com/BaFcCP5.png', 'https://cdn-yildiz.yayin.com.tr/yildiz/yildiz/playlist.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-    <div class="card" data-name="Yol TV (720p)">
-      <img src="https://i.imgur.com/rTBX6lS.png" alt="logo">
-      <div class="card-name">Yol TV (720p)</div>
-      <button class="play-btn" onclick="playChannel('https://stream.yol.tv:9443/medialive/yol.m3u8')">تشغيل</button>
-      <button class="fav-btn" onclick="addFavorite('Yol TV (720p)', 'https://i.imgur.com/rTBX6lS.png', 'https://stream.yol.tv:9443/medialive/yol.m3u8')">⭐ أضف للمفضلة</button>
-    </div>
-    
-  </div>
-
-  <h2 id="favoritesTitle">⭐ المفضلة</h2>
-  <div id="favorites"></div>
-
-  <script>
-    const player = document.getElementById('player');
-    const searchInput = document.getElementById('search');
-    const cards = document.querySelectorAll('.card');
-    const favoritesContainer = document.getElementById('favorites');
-
-    function playChannel(url) {
-      player.src = url;
-      player.play();
-    }
-
-    searchInput.addEventListener('input', function() {
-      const val = this.value.toLowerCase();
-      cards.forEach(c => {
-        const name = c.dataset.name.toLowerCase();
-        c.style.display = name.includes(val) ? '' : 'none';
-      });
-    });
-
-    function addFavorite(name, logo, url) {
-      const key = 'fav_' + name;
-      if (!localStorage.getItem(key)) {
-        localStorage.setItem(key, JSON.stringify({name, logo, url}));
-        loadFavorites();
-      }
-    }
-
-    function loadFavorites() {
-      favoritesContainer.innerHTML = '';
-      for (let key in localStorage) {
-        if (key.startsWith('fav_')) {
-          const fav = JSON.parse(localStorage.getItem(key));
-          const div = document.createElement('div');
-          div.className = 'card';
-          div.innerHTML = `
-            <img src="${fav.logo}">
-            <div class="card-name">${fav.name}</div>
-            <button class="play-btn" onclick="playChannel('${fav.url}')">تشغيل</button>
-            <button class="remove-btn" onclick="removeFavorite('${key}')">❌ حذف</button>
-          `;
-          favoritesContainer.appendChild(div);
-        }
-      }
-    }
-
-    function removeFavorite(key) {
-      localStorage.removeItem(key);
-      loadFavorites();
-    }
-
-    window.onload = loadFavorites;
-  </script>
-</body>
-</html>
